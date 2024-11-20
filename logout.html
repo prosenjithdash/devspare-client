@@ -1,0 +1,75 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+
+    <!-- AOS link -->
+    <link href="https://unpkg.com/aos@2.3.1/dist/aos.css" rel="stylesheet">
+    
+    <!-- CSS link -->
+    <!-- <link rel="stylesheet" href="style.css"> -->
+    
+    <!-- TailwindCSS link -->
+    <script src="https://cdn.tailwindcss.com"></script>
+    
+    <!-- Daisy ui -->
+    <link href="https://cdn.jsdelivr.net/npm/daisyui@4.12.14/dist/full.min.css" rel="stylesheet" type="text/css" />
+    <script src="https://cdn.tailwindcss.com"></script>
+    
+    <!-- Font Awesome -->
+    <script src="https://kit.fontawesome.com/57836aaf8e.js" crossorigin="anonymous"></script>
+    <title>Logout</title>
+</head>
+<body>
+    <div class="container mx-auto my-[50px]">
+        
+        <button class="btn text-[55px] font-bold"><a href="/index.html">Devspare!</a></button>
+
+    <!-- Divider -->
+        <div class="divider"></div>
+
+        <!-- body section-->
+         <div class="max-w-[600px] mx-auto my-[20px]">
+            <h2 class="text-[40px] text-center">Welcome to Devspare</h2>
+
+            <form>
+                <div class="contact-right">
+                    <form>
+                        
+                        <div class="mt-[15px]">
+                            <p class="font-semibold text-[18px] pb-[8px]">Email</p>
+                            <input class="border-2 p-[10px] shadow-xl w-full rounded-lg bg-slate-200" type="email" name="email" placeholder="Enter Your Email"
+                                required>
+                        </div>
+                        <div class="mt-[15px]">
+                            <p class="font-semibold text-[18px] pb-[8px]">Password</p>
+                            <input class="border-2 shadow-xl p-[10px] w-full rounded-lg bg-slate-200" type="password" name="password"
+                                placeholder="Enter Your password" required>
+                        </div>
+
+                        <div class="mt-[5px] text-end">
+                            <p><a class="link link-neutral">Forgotten password</a></p>
+                        </div>
+
+                        <div class="mt-[20px]  text-center ">
+                            <button class="btn bg-red-300 shadow-xl text-[20px]  ">
+                                <input class="px-[100px]  py-[10px] text-[25px]" type="submit" value="Log in">
+                            </button>
+                        </div>
+                    </form>
+
+                    <div class="divider text-[25px] mt-[30px]">OR</div>
+
+                    <div class="text-[18px] text-center">
+                        <p >Don't have an account? <span><a href="/signup.html" class="link link-primary ">Sign Up</a></span></p>
+                    </div>
+                </div>
+
+
+            </form>
+
+         </div>
+    </div>
+</body>
+</html>
