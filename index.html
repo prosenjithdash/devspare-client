@@ -46,12 +46,13 @@
                             <ul tabindex="0"
                                 class="menu menu-sm dropdown-content bg-base-100 rounded-box z-[1] mt-3 w-52 p-2 shadow">
                                 <li><a href="#"><i class="fa-regular fa-user text-[25px]"></i></a></li>
-                                <li><a href="#"><span class="text-[25px]">Post</span><i
-                                            class="fa-regular fa-pen-to-square text-[25px]"></i></a></li>
-                                <li><a href="#"><i class="fa-regular fa-bell text-[25px]"></i></a></li>
+                                <li><a href="#"><span class="lg:text-[25px] text-[18px]">Post</span><i
+                                            class="fa-regular fa-pen-to-square lg:text-[25px] text-[18px]"></i></a></li>
+                                <li><a href="#"><i class="fa-regular fa-bell lg:text-[25px] text-[18px] "></i></a></li>
                             </ul>
                         </div>
-                        <a class="btn btn-ghost text-[55px] font-bold">Devspare!</a>
+                        <button class=" hover:bg-gray-200 border px-[20px] rounded-2xl  text-[55px] font-bold"><a
+                                href="/index.html">Devspare!</a></button>
                     </div>
                     <div class="navbar-center hidden lg:flex">
                         <ul class="menu menu-horizontal px-1">
@@ -97,8 +98,8 @@
             <div class="divider"></div>
         
             <!-- Header Section -->
-            <div class="subHeader max-w-[1100px] mx-auto">
-                <h1 class="text-[27px]">Following</h1>
+            <div class="subHeader lg:max-w-[1100px] max-w-[300px] mx-auto">
+                <h1 class="lg:text-[27px] text-[20px]">Following</h1>
             </div>
         
             <!-- Divider -->
@@ -108,60 +109,64 @@
         
         
         <!-- Content Section -->
-        <section id="content" class=" max-w-[1100px] mx-auto">
+        <section id="content" class=" lg:max-w-[1100px] w-full mx-auto">
         
             <!-- Card - 01 -->
-            <div class=" border-2 p-[40px] border-solid rounded-lg mb-[30px]">
-                <div class="content-items flex justify-between gap-8">
-                    <div class="basis-[60%]">
-                        <!-- row 1 -->
-                        <div class="flex justify-between items-center space-y-2">
-                            <div class="flex gap-1 items-center">
-                                <i class="fa-regular fa-circle-user text-[20px]">
-                                </i>
-                                <h4 class="text-[24px]">Prosenjith Dash</h4>
+            <a href="/cardDetails.html">
+                <div class=" border-2 lg:p-[40px] p-[28px] border-solid rounded-lg mb-[30px]">
+                    <div class="content-items lg:flex justify-between lg:gap-8 ">
+                        <div class="basis-[60%]">
+                            <!-- row 1 -->
+                            <div class="flex mb-[8px] justify-between items-center space-y-2">
+                                <div class="flex gap-1 items-center">
+                                    <i class="fa-regular fa-circle-user text-[20px]">
+                                    </i>
+                                    <h4 class="lg:text-[24px] text-[14px]">Prosenjith Dash</h4>
+                                </div>
+                                <div>
+                                    <button class="btn border bottom-1 lg:px-[10px] px-[6px] py-[0px]  lg:py-[1px]">Follow +</button>
+                                </div>
                             </div>
+                
+                            <!-- row 2 - 5 -->
                             <div>
-                                <button class="btn border bottom-1 px-[10px] py-[1px]">Follow +</button>
-                            </div>
-                        </div>
-        
-                        <!-- row 2 - 5 -->
-                        <div>
-                            <!-- row 2 -->
-                            <h1 class="text-[33px] font-bold">The Full-Stack Web Development job market REALLY sucks right now
-                            </h1>
-        
-                            <!-- row 3 -->
-                            <p class="text-[24px] pb-2">Why you should pivot and change directions right NOW</p>
-        
-                            <!-- row 4 -->
-                            <p class="text-[17px] pb-2">01 Jan 2025</p>
-        
-                            <!-- row 5 -->
-                            <div class="flex gap-[50px] items-center">
-                                <div class="flex gap-1 text-[20px] items-center">
-                                    <i class="fa-regular fa-thumbs-up"></i>
-                                    <p>1.1k</p>
-                                </div>
-        
-                                <div class=" flex gap-1 text-[20px] items-center">
-                                    <i class="fa-regular fa-comment"></i>
-                                    <p>39</p>
+                                <!-- row 2 -->
+                                <h1 class="lg:text-[33px] text-[20px] font-bold">The Full-Stack Web Development job market REALLY sucks
+                                    right now
+                                </h1>
+                
+                                <!-- row 3 -->
+                                <p class="lg:text-[24px] text-[16px] lg:pb-2 pb-1">Why you should pivot and change directions right NOW
+                                </p>
+                
+                                <!-- row 4 -->
+                                <p class="lg:text-[17px] text-[14px] lg:pb-2 pb-1">01 Jan 2025</p>
+                
+                                <!-- row 5 -->
+                                <div class="flex gap-[50px] items-center">
+                                    <div class="flex gap-1 lg:text-[20px] text-[15px] items-center">
+                                        <i class="fa-regular fa-thumbs-up"></i>
+                                        <p>1.1k</p>
+                                    </div>
+                
+                                    <div class=" flex gap-1 lg:text-[20px] text-[15px] items-center">
+                                        <i class="fa-regular fa-comment"></i>
+                                        <p>39</p>
+                                    </div>
                                 </div>
                             </div>
                         </div>
-                    </div>
-        
-                    <div class="basis-[40%]">
-                        <img class="w-full h-[280px] rounded-lg"
-                            src="https://as2.ftcdn.net/v2/jpg/03/11/30/59/1000_F_311305968_V3AfIhEqWnvlDfBRQgTFlFTHtScOSuIn.jpg"
-                            alt="UI/UX image">
+                
+                        <div class="lg:basis-[40%] mt-2">
+                            <img class="w-full h-[240px] lg:h-[280px] rounded-lg"
+                                src="https://as2.ftcdn.net/v2/jpg/03/11/30/59/1000_F_311305968_V3AfIhEqWnvlDfBRQgTFlFTHtScOSuIn.jpg"
+                                alt="UI/UX image">
+                        </div>
                     </div>
                 </div>
-            </div>
+            </a>
         
-            <!-- Card - 01 -->
+            <!-- Card - 02 -->
             <div class=" border-2 p-[40px] border-solid rounded-lg ">
                 <div class="content-items flex justify-between gap-8">
                     <div class="basis-[60%]">
@@ -509,4 +514,7 @@
     <script src="js/devspare.js"></script>
 
 </body>
+
+
+
 </html>
