@@ -526,20 +526,58 @@
                      <div class="flex gap-[20px] items-center">
 
                         <!-- save icon -->
-                         <div>
-                            <svg xmlns="http://www.w3.org/2000/svg" width="100" height="34" viewBox="0 0 100 34" fill="none">
-                                <rect x="0.5" y="0.5" width="99" height="33" rx="4.5" fill="white" stroke="black" />
+                         
+                        <div class="dropdown ">
+                        
+                       <svg tabindex="0" role="button" class="border rounded-md py-[0px] px-[0px] border-gray-600" xmlns="http://www.w3.org/2000/svg" width="150" height="34" viewBox="0 0 100 34" fill="none">
+                                <rect x="0.5" y="0.5"  rx="4.5" fill="white" stroke="black" />
                                 <path fill-rule="evenodd" clip-rule="evenodd"
                                     d="M53.5145 7C57.242 7 59.3804 8.679 59.3804 11.604V26.14C59.3804 26.75 59.0354 27.299 58.4552 27.606C57.8771 27.914 57.1804 27.92 56.5958 27.62L50.0464 24.253L43.4365 27.627C43.1508 27.773 42.8376 27.847 42.5233 27.847C42.1991 27.847 41.8749 27.768 41.5804 27.61C41.0013 27.303 40.6562 26.754 40.6562 26.145V11.421C40.6562 8.611 42.7958 7 46.5266 7H53.5145ZM53.5145 8.5H46.5266C43.7255 8.5 42.3046 9.482 42.3046 11.421V26.145C42.3046 26.239 42.3639 26.29 42.4134 26.316C42.4628 26.344 42.5409 26.364 42.631 26.318L49.6442 22.738C49.8947 22.611 50.2013 22.61 50.453 22.739L57.4057 26.313C57.4969 26.361 57.5749 26.339 57.6244 26.312C57.6738 26.285 57.7321 26.234 57.7321 26.14L57.7317 11.49C57.7234 10.6294 57.5404 8.5 53.5145 8.5ZM53.9967 13.7285C54.4516 13.7285 54.8209 14.0645 54.8209 14.4785C54.8209 14.8925 54.4516 15.2285 53.9967 15.2285H45.9549C45.5 15.2285 45.1308 14.8925 45.1308 14.4785C45.1308 14.0645 45.5 13.7285 45.9549 13.7285H53.9967Z"
                                     fill="black" />
                             </svg>
-                         </div>
+
+                            <div tabindex="0"
+                                class="dropdown-content mt-6 card card-compact bg-base-100 text-gray-600 z-[1] w-[300px] p-2 shadow-xl">
+                                <div class="card-body card-start ">
+                        
+                                    <!-- Share links -->
+                                    <div>
+                        
+                                    
+                        
+                                       <div class="flex justify-between items-center">
+                                        <!-- list -->
+                                         <div class="flex items-center gap-[20px]">
+                                            <!-- check box -->
+                                            <div class="form-control">
+                                                <label class="label cursor-pointer">
+                                                   
+                                                    <input type="checkbox" checked="checked" class="checkbox" />
+                                                </label>
+                                            </div>
+
+                                            <p class="text-[20px] text-black">Reading list</p>
+                                         </div>
+
+                                       </div>
+                        
+                                        <div class="divider"></div>
+                        
+                                        <p class="text-[20px] text-green-600">Create new list</p>
+                                        
+                        
+                        
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+
 
                          <!-- Share Icon -->
                           <div>
                             <div class="dropdown ">
                                 
-                                <button tabindex="0" role="button" class="border rounded-md   py-[3px] px-[40px] border-gray-600"><i
+                                <button tabindex="0" role="button" class="border rounded-md   py-[3px] px-[55px] border-gray-600"><i
                                         class="fa-regular fa-share-from-square text-[20px]"></i></button>
                                 <div tabindex="0" class="dropdown-content mt-6 card card-compact bg-base-100 text-gray-600 z-[1] w-[300px] p-2 shadow-xl">
                                     <div class="card-body card-start ">
@@ -600,9 +638,56 @@
                           </div>
 
                           <!-- More Icon -->
-                           <div>
-                                <button class="border rounded-md py-[3px] px-[40px] border-gray-600"><i class="fa-solid fa-ellipsis text-[20px]"></i></button>
-                           </div>
+                           
+                        <div class="dropdown ">
+                        
+                            <button  tabindex="0" role="button"  class="border rounded-md py-[3px] px-[55px] border-gray-600"><i
+                                    class="fa-solid fa-ellipsis text-[20px]"></i></button>
+                            <div tabindex="0"
+                                class="dropdown-content mt-6 card card-compact bg-base-100 text-gray-600 z-[1] w-[300px] p-2 shadow-xl">
+                                <div class="card-body card-start ">
+                        
+                                    <!-- Share links -->
+                                    <div>
+                        
+                                        <!-- copy link -->
+                                        
+                                        <div class=" flex items-center gap-[20px] text-[18px] text-gray-500 mb-4">
+                                            <button class="border border-gray-600 p-1 rounded-[70px]"><i class="fa-solid fa-plus text-[20px]"></i></button>
+                                            <div>
+                                                <p class="text-[20px] text-gray-500">Show more</p>
+                                                <p class="text-[14px] text-gray-500">Recommend more stories like this to me.</p>
+                                            </div>
+                        
+                                        </div>
+                                     
+                        
+                                        
+                        
+                                        <div class=" flex items-center gap-[20px] text-[18px] text-gray-500">
+                                            <button class="border border-gray-600 p-1 rounded-[70px]"><i class="fa-solid fa-plus text-[20px]"></i></button>
+                                            <div>
+                                                <p class="text-[20px] text-gray-500">Show less</p>
+                                                <p class="text-[14px] text-gray-500">Recommend fewer stories like this to me.</p>
+                                            </div>
+                                        
+                                        </div>
+
+                                        <div class="divider"></div>
+                        
+                                        <p class="text-[20px] text-gray-500">Undo claps</p>
+                                        <div class="divider"></div>
+                                        <p class="text-[20px] text-gray-500">Follow author</p>
+                                        <div class="divider"></div>
+                                        <p class="text-[20px] mb-4 text-gray-500">Mute author</p>
+                                 
+                                        <p class="text-[20px] text-red-500">Report story...</p>
+                                       
+                        
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
 
                      </div>
                 </div>
