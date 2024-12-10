@@ -255,8 +255,8 @@
                             <div class="dropdown dropdown-end">
                                 <div tabindex="0" role="button" class="btn btn-ghost btn-circle avatar">
                                     <div class="w-10 rounded-full">
-                                        <img alt="Tailwind CSS Navbar component"
-                                            src="https://t4.ftcdn.net/jpg/02/24/86/95/360_F_224869519_aRaeLneqALfPNBzg0xxMZXghtvBXkfIA.jpg" />
+                                        <img id="profile-avatar" alt="Tailwind CSS Navbar component"
+                                            src="" />
                                     </div>
                                 </div>
                                 <ul tabindex="0"
@@ -301,57 +301,7 @@
         
             <!-- Card - 01 -->
             <a href="/cardDetails.html">
-                <div class=" border-2 lg:p-[40px] p-[28px] border-solid rounded-lg mb-[30px]">
-                    <div class="content-items lg:flex justify-between lg:gap-8 ">
-                        <div class="basis-[60%]">
-                            <!-- row 1 -->
-                            <div class="flex mb-[8px] justify-between items-center space-y-2">
-                                <div class="flex gap-1 items-center">
-                                    <i class="fa-regular fa-circle-user text-[20px]">
-                                    </i>
-                                    <h4 class="lg:text-[24px] text-[14px]">Prosenjith Dash</h4>
-                                </div>
-                                <div>
-                                    <button class="btn border bottom-1 lg:px-[10px] px-[6px] py-[0px]  lg:py-[1px]">Follow +</button>
-                                </div>
-                            </div>
-                
-                            <!-- row 2 - 5 -->
-                            <div>
-                                <!-- row 2 -->
-                                <h1 class="lg:text-[33px] text-[20px] font-bold">The Full-Stack Web Development job market REALLY sucks
-                                    right now
-                                </h1>
-                
-                                <!-- row 3 -->
-                                <p class="lg:text-[24px] text-[16px] lg:pb-2 pb-1">Why you should pivot and change directions right NOW
-                                </p>
-                
-                                <!-- row 4 -->
-                                <p class="lg:text-[17px] text-[14px] lg:pb-2 pb-1">01 Jan 2025</p>
-                
-                                <!-- row 5 -->
-                                <div class="flex gap-[50px] items-center">
-                                    <div class="flex gap-1 lg:text-[20px] text-[15px] items-center">
-                                        <i class="fa-regular fa-thumbs-up"></i>
-                                        <p>1.1k</p>
-                                    </div>
-                
-                                    <div class=" flex gap-1 lg:text-[20px] text-[15px] items-center">
-                                        <i class="fa-regular fa-comment"></i>
-                                        <p>39</p>
-                                    </div>
-                                </div>
-                            </div>
-                        </div>
-                
-                        <div class="lg:basis-[40%] mt-2">
-                            <img class="w-full h-[240px] lg:h-[280px] rounded-lg"
-                                src="https://as2.ftcdn.net/v2/jpg/03/11/30/59/1000_F_311305968_V3AfIhEqWnvlDfBRQgTFlFTHtScOSuIn.jpg"
-                                alt="UI/UX image">
-                        </div>
-                    </div>
-                </div>
+                <div id="postsContainer"></div>
             </a>
         
             <!-- Card - 02 -->
@@ -423,11 +373,11 @@
                         <!-- row 2 - 5 -->
                         <div>
                             <!-- row 2 -->
-                            <h1 class="text-[33px] font-bold">The Full-Stack Web Development job market REALLY sucks right now
+                            <h1 id="title" class="text-[33px] font-bold">The Full-Stack Web Development job market REALLY sucks right now
                             </h1>
         
                             <!-- row 3 -->
-                            <p class="text-[24px] pb-2">Why you should pivot and change directions right NOW</p>
+                            <p id="description" class="text-[24px] pb-2">Why you should pivot and change directions right NOW</p>
         
                             <!-- row 4 -->
                             <p class="text-[17px] pb-2">01 Jan 2025</p>
@@ -448,7 +398,7 @@
                     </div>
         
                     <div class="basis-[40%]">
-                        <img class="w-full h-[280px] rounded-lg"
+                        <img id="cover_pic" class="w-full h-[280px] rounded-lg"
                             src="https://static.vecteezy.com/system/resources/previews/013/131/604/non_2x/web-developer-job-vacancy-template-with-programmer-working-on-laptop-illustration-free-vector.jpg"
                             alt="UI/UX image">
                     </div>
@@ -700,7 +650,115 @@
     </script>
 
     <script src="js/devspare.js"></script>
+<script>
 
+const getPostsData = async () => {
+    try {
+        const accessToken = localStorage.getItem("accessToken");
+        const res = await fetch("http://localhost/devspare/backend/api/v1/articles/article.php", {
+            method: 'GET',
+            headers: {
+                'Authorization': `Bearer ${accessToken}`
+            }
+        });
+
+        if (!res.ok) {
+            throw new Error(`HTTP error! status: ${res.status}`);
+        }
+
+        const data = await res.json();
+        return data;
+    } catch (error) {
+        console.error("Error fetching data (Fetch):", error.message);
+        return [];
+    }
+};
+const getUserData = async () => {
+    try {
+        const accessToken = localStorage.getItem("accessToken");
+        const res = await fetch("http://localhost/devspare/backend/api/v1/users/get-user.php", {
+            method: 'GET',
+            headers: {
+                'Authorization': `Bearer ${accessToken}`
+            }
+        });
+        
+
+        if (!res.ok) {
+            throw new Error(`HTTP error! status: ${res.status}`);
+        }
+
+        const data = await res.json();
+        return data;
+    } catch (error) {
+        console.error("Error fetching data (Fetch):", error.message);
+        return [];
+    }
+};
+
+// Function to render articles in the DOM
+const renderPosts = async () => {
+    const data = await getPostsData(); // Wait for the posts data
+    const postsContainer = document.getElementById("postsContainer"); // Assuming a container div with id="postsContainer"
+
+    if (data.length === 0) {
+        postsContainer.innerHTML = "<p>No posts available.</p>";
+        return;
+    }
+
+    postsContainer.innerHTML = ""; // Clear any existing content
+
+    // Iterate over each post and render
+    data.forEach((post) => {
+        console.log(post.cover_pic)
+        const postHTML = `
+            <div class="border-2 lg:p-[40px] p-[28px] border-solid rounded-lg mb-[30px]">
+                <div class="content-items lg:flex justify-between lg:gap-8">
+                    <div class="basis-[60%]">
+                        <div class="flex mb-[8px] justify-between items-center space-y-2">
+                            <div class="flex gap-1 items-center">
+                                <i class="fa-regular fa-circle-user text-[20px]"></i>
+                                <h4 class="lg:text-[24px] text-[14px]">${post.author || "Anonymous"}</h4>
+                            </div>
+                            <div>
+                                <button class="btn border bottom-1 lg:px-[10px] px-[6px] py-[0px] lg:py-[1px]">Follow +</button>
+                            </div>
+                        </div>
+                        <h1 class="lg:text-[33px] text-[20px] font-bold">${post.title}</h1>
+                        <p class="lg:text-[24px] text-[16px] lg:pb-2 pb-1">${post.content}</p>
+
+                        <div class="flex gap-[50px] items-center">
+                            <div class="flex gap-1 lg:text-[20px] text-[15px] items-center">
+                                <i class="fa-regular fa-thumbs-up"></i>
+                                <p>${post.likes || 0}</p>
+                            </div>
+                            <div class="flex gap-1 lg:text-[20px] text-[15px] items-center">
+                                <i class="fa-regular fa-comment"></i>
+                                <p>${post.comments || 0}</p>
+                            </div>
+                        </div>
+                    </div>
+                    <div class="lg:basis-[40%] mt-2">
+                        <img class="w-full h-[240px] lg:h-[280px] rounded-lg"
+                            src="${post.cover_pic || 'https://via.placeholder.com/300'}"
+                            alt="${post.title || 'Post image'}">
+                    </div>
+                </div>
+            </div>
+        `;
+
+        postsContainer.innerHTML += postHTML;
+    });
+};
+
+// Call the render function
+renderPosts();
+const user = getUserData()
+user.then((data) =>
+document.getElementById("profile-avatar").querySelector("img").src =
+data.profile_pic || "https://via.placeholder.com/150"
+)
+</script>
 </body>
 
 

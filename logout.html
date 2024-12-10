@@ -84,10 +84,10 @@
                  alert(responseData.message);
      
                  // Assuming the activation token is in responseData[1]
-                 const activationToken = responseData[1];
-                 if (activationToken) {
-                     localStorage.setItem("accessToken", activationToken);
-                     console.log("accessToken token stored successfully.",activationToken);
+                 const accessToken = responseData[1];
+                 if (accessToken) {
+                     localStorage.setItem("accessToken", accessToken);
+                     console.log("accessToken token stored successfully.",accessToken);
                  } else {
                      console.log("accessToken token not found.");
                  }
