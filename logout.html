@@ -95,7 +95,36 @@
                  console.error("Error during login:", error.message);
              }
          }
+         async function login(event) {
+             event.preventDefault(); // Prevent the form from submitting and page reload
+             const email = document.getElementById("email").value;
+             const password = document.getElementById("password").value;
+     
+             try {
+                 const res = await axios.post("http://localhost/devspare/backend/api/v1/auth/login.php", {
+                     email,
+                     password
+                 });
+     
+                 const responseData = res.data;
+     
+                 console.log("POST Response:", responseData);
+                 alert(responseData.message);
+     
+                 // Assuming the activation token is in responseData[1]
+                 const accessToken = responseData[1];
+                 if (accessToken) {
+                     localStorage.setItem("accessToken", accessToken);
+                     console.log("accessToken token stored successfully.",accessToken);
+                 } else {
+                     console.log("accessToken token not found.");
+                 }
+             } catch (error) {
+                 console.error("Error during login:", error.message);
+             }
+         }
      </script>
+     
      
 </body>
 </html>
