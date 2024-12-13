@@ -149,7 +149,7 @@
         <div class="container">
             <div class="profile">
                 <div class="profile-image" onclick="document.getElementById('profile-pic-input').click();">
-                    <img id="profile-img" src="https://media.licdn.com/dms/image/v2/D5603AQGSAKbb-Qd7JQ/profile-displayphoto-shrink_400_400/profile-displayphoto-shrink_400_400/0/1718564057747?e=1739404800&v=beta&t=ZY2ZqmM9T2AFo3fYvIpfqgHjd4X2ngsHko6KS19bu-w" alt="Profile Image">
+                    <img  class="profile-img" src="https://media.licdn.com/dms/image/v2/D5603AQGSAKbb-Qd7JQ/profile-displayphoto-shrink_400_400/profile-displayphoto-shrink_400_400/0/1718564057747?e=1739404800&v=beta&t=ZY2ZqmM9T2AFo3fYvIpfqgHjd4X2ngsHko6KS19bu-w" alt="Profile Image">
                 </div>
 
                 <input type="file" id="profile-pic-input" accept="image/*" style="display:none;" onchange="changeProfilePic(event)">
@@ -248,7 +248,7 @@
             if (file) {
                 const reader = new FileReader();
                 reader.onload = function(e) {
-                    document.getElementById('profile-img').src = e.target.result;
+                    document.querySelector('.profile-img').src = e.target.result;
                 };
                 reader.readAsDataURL(file);
             }
@@ -354,6 +354,11 @@
                 }
         
                 const data = await res.json();
+                const userPic = document.querySelector(".profile-img");
+                if (userPic) {
+                    userPic.src = data.profile_pic || "https://via.placeholder.com/150";
+                    userPic.alt = data.title || "Post image";
+                }
                 return data;
             } catch (error) {
                 console.error("Error fetching data (Fetch):", error.message);
