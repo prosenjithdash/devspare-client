@@ -109,13 +109,13 @@
                  const responseData = res.data;
      
                  console.log("POST Response:", responseData);
-                 alert(responseData.message);
      
                  // Assuming the activation token is in responseData[1]
                  const accessToken = responseData[1];
                  if (accessToken) {
                      localStorage.setItem("accessToken", accessToken);
                      console.log("accessToken token stored successfully.",accessToken);
+                     window.location.href = 'index.html'; 
                  } else {
                      console.log("accessToken token not found.");
                  }
