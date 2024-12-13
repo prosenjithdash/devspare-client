@@ -179,22 +179,50 @@
 
     <main>
         <div class="container">
-            <div class="gallery">
-                <div tabindex="0">
-                    <img src="https://images.unsplash.com/photo-1511765224389-37f0e77cf0eb?w=500&h=500&fit=crop" class="gallery-image" alt="Gallery Image">
-                </div>
-
-                <div tabindex="0">
-                    <img src="https://images.unsplash.com/photo-1497445462247-4330a224fdb1?w=500&h=500&fit=crop" class="gallery-image" alt="Gallery Image">
-                </div>
-                <div tabindex="0">
-                    <img src="https://images.unsplash.com/photo-1511765224389-37f0e77cf0eb?w=500&h=500&fit=crop" class="gallery-image" alt="Gallery Image">
-                </div>
-
-                <div tabindex="0">
-                    <img src="https://images.unsplash.com/photo-1497445462247-4330a224fdb1?w=500&h=500&fit=crop" class="gallery-image" alt="Gallery Image">
-                </div>
+            <div  class="container mx-auto my-[50px]">
+                <!-- Header Section -->
+                <section id="header">
+                
+                
+                    <!-- Divider -->
+                    <div class="divider"></div>
+            
+                
+                    <!-- Divider -->
+                    <div class="divider"></div>
+                
+                </section>
+                
+                
+                <!-- Content Section -->
+                <section id="content" class=" lg:max-w-[1100px] w-full mx-auto">
+                
+                    <!-- Card - 01 -->
+                    <a href="/cardDetails.html">
+                        <div id="postsContainer"></div>
+                    </a>
+                
+                </section>
+        
             </div>
+        
+             <!-- Footer Section -->
+    
+        
+        
+        
+            
+        
+        
+        
+        
+        <!-- --------------------------------------------------------------- -->
+        
+        
+        
+        
+        
+
         </div>
     </main>
 
@@ -288,6 +316,173 @@
         function closeModal() {
             document.getElementById('modal').style.display = 'none';
         }
+
+        const getPostsData = async () => {
+            try {
+                const accessToken = localStorage.getItem("accessToken");
+                const res = await fetch("http://localhost/devspare/backend/api/v1/articles/article.php", {
+                    method: 'GET',
+                    headers: {
+                        'Authorization': `Bearer ${accessToken}`
+                    }
+                });
+        
+                if (!res.ok) {
+                    throw new Error(`HTTP error! status: ${res.status}`);
+                }
+        
+                const data = await res.json();
+                return data;
+            } catch (error) {
+                console.error("Error fetching data (Fetch):", error.message);
+                return [];
+            }
+        };
+        const getUserData = async () => {
+            try {
+                const accessToken = localStorage.getItem("accessToken");
+                const res = await fetch("http://localhost/devspare/backend/api/v1/users/get-user.php", {
+                    method: 'GET',
+                    headers: {
+                        'Authorization': `Bearer ${accessToken}`
+                    }
+                });
+                
+        
+                if (!res.ok) {
+                    throw new Error(`HTTP error! status: ${res.status}`);
+                }
+        
+                const data = await res.json();
+                return data;
+            } catch (error) {
+                console.error("Error fetching data (Fetch):", error.message);
+                return [];
+            }
+        };
+        
+        const getUserDataById = async (userId) => {
+            try {
+                const accessToken = localStorage.getItem("accessToken");
+                const res = await fetch(`http://localhost/devspare/backend/api/v1/users/get-user.php?userId=${userId}`, {
+                    method: 'GET',
+                    headers: {
+                        'Authorization': `Bearer ${accessToken}`,
+                        'Content-Type': 'application/json'
+                    }
+                });
+        
+                if (!res.ok) {
+                    throw new Error(`HTTP error! status: ${res.status}`);
+                }
+        
+                const data = await res.json();
+                return data;
+            } catch (error) {
+                console.error("Error fetching user data:", error.message);
+                return null;
+            }
+        };
+        
+        // Function to render articles in the DOM
+        const renderPosts = async () => {
+            const data = await getPostsData(); // Fetch posts data
+            const postsContainer = document.getElementById("postsContainer");
+        
+            if (data.length === 0) {
+                postsContainer.innerHTML = "<p>No posts available.</p>";
+                return;
+            }
+        
+            postsContainer.innerHTML = ""; // Clear previous content
+        
+            for (const post of data) {
+                console.log(post)
+                const user = await getUserDataById(post.user_id); // Fetch user data for each post
+                console.log(user)
+        
+                const postHTML = `
+                    <a href="/cardDetails.html?id=${post.article_id}" class="block">
+                        <div class="border-2 lg:p-[40px] p-[28px] border-solid rounded-lg mb-[30px]">
+                            <div class="content-items lg:flex justify-between lg:gap-8">
+                                <div class="basis-[60%]">
+                            
+                                    <h1 class="lg:text-[33px] text-[20px] font-bold">${post.title}</h1>
+                                    <p class="lg:text-[24px] text-[16px] lg:pb-2 pb-1">${post.content}</p>
+                                    <div class="flex gap-[50px] items-center">
+                                        <div class="flex gap-1 lg:text-[20px] text-[15px] items-center">
+                                            <i class="fa-regular fa-thumbs-up"></i>
+                                            <p>${post.like_count || 0}</p>
+                                        </div>
+                                        <div class="flex gap-1 lg:text-[20px] text-[15px] items-center">
+                                            <i class="fa-regular fa-comment"></i>
+                                            <p>${post.comments || 0}</p>
+                                        </div>
+                                    </div>
+                                </div>
+                                <div class="lg:basis-[40%] mt-2">
+                                    <img class="w-full h-[240px] lg:h-[280px] rounded-lg"
+                                        src="${post.cover_pic || 'https://via.placeholder.com/300'}"
+                                        alt="${post.title || 'Post image'}">
+                                </div>
+                            </div>
+                        </div>
+                    </a>
+                `;
+        
+                postsContainer.innerHTML += postHTML;
+            }
+        };
+        // Call the render function
+        renderPosts();
+        const user = getUserData()
+        user.then((data) =>
+        document.getElementById("profile-avatar").querySelector("img").src =
+        data.profile_pic || "https://via.placeholder.com/150"
+        )
+        
+        
+        const renderNotification = async () => {
+              const notification = await getAllNotification();
+              console.log("notification.length", notification.length);
+        
+              // Select the container by ID
+              const notificationContainer = document.getElementById("notificationCon");
+        
+              document.getElementById("tNotification").innerHTML = `
+                    <p>${notification.length}</p>
+                `;
+        
+              // Loop through each notification and render dynamically
+              notification.forEach((el) => {
+                const notificationDiv = document.createElement("div");
+                notificationDiv.classList.add("mt-[70px]");
+                notificationDiv.innerHTML = `
+                  <div class="divider"></div>
+                  <div>
+                    <div class="my-[15px] flex items-center gap-[10px]">
+                      <!-- Image -->
+                      <img class="rounded-[300px] w-[50px] h-[50px]"
+                          src="https://static.vecteezy.com/system/resources/thumbnails/005/346/410/small_2x/close-up-portrait-of-smiling-handsome-young-caucasian-man-face-looking-at-camera-on-isolated-light-gray-studio-background-photo.jpg"
+                          alt="">
+                      <!-- Name part -->
+                      <div>
+                        <p class="text-[18px] text-gray-700">${el.title || "title"}</p>
+                        <p class="text-gray-400 text-[17px]">${el.created_at.toString() || "about 1 year ago"}</p>
+                      </div>
+                    </div>
+                    <!-- Comment -->
+                    <p class="text-[16px] text-gray-600">${el.message || "Lorem ipsum dolor sit amet consectetur adipisicing elit. Quam, nisi nesciunt beatae quasi sit repudiandae dolorem iste ut consequuntur atque iusto, id odio aliquid eaque, eum est. Odit, dolores earum iure id placeat ratione dignissimos in suscipit laboriosam accusantium eaque?"}</p>
+                    <div class="divider"></div>
+                  </div>
+                `;
+                // Append the rendered notification to the container
+                notificationContainer.appendChild(notificationDiv);
+              });
+            };
+            renderNotification()
+        
+            
     </script>
 </body>
 </html>
