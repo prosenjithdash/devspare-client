@@ -1,5 +1,6 @@
 <!DOCTYPE html>
 <html lang="en">
+
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
@@ -54,8 +55,13 @@
         }
 
         @keyframes spin {
-            0% { transform: rotate(0deg); }
-            100% { transform: rotate(360deg); }
+            0% {
+                transform: rotate(0deg);
+            }
+
+            100% {
+                transform: rotate(360deg);
+            }
         }
 
         .gallery-item {
@@ -72,7 +78,8 @@
             text-align: center;
         }
 
-        .gallery-item-likes, .gallery-item-comments {
+        .gallery-item-likes,
+        .gallery-item-comments {
             margin: 5px;
         }
 
@@ -98,7 +105,8 @@
             width: 80%;
         }
 
-        .modal-header, .modal-footer {
+        .modal-header,
+        .modal-footer {
             display: flex;
             justify-content: space-between;
             align-items: center;
@@ -144,16 +152,20 @@
         }
     </style>
 </head>
+
 <body>
     <header>
         <div class="container">
             <div class="profile">
                 <div class="profile-image" onclick="document.getElementById('profile-pic-input').click();">
-                    <img  class="profile-img" src="https://media.licdn.com/dms/image/v2/D5603AQGSAKbb-Qd7JQ/profile-displayphoto-shrink_400_400/profile-displayphoto-shrink_400_400/0/1718564057747?e=1739404800&v=beta&t=ZY2ZqmM9T2AFo3fYvIpfqgHjd4X2ngsHko6KS19bu-w" alt="Profile Image">
+                    <img class="profile-img"
+                        src="https://media.licdn.com/dms/image/v2/D5603AQGSAKbb-Qd7JQ/profile-displayphoto-shrink_400_400/profile-displayphoto-shrink_400_400/0/1718564057747?e=1739404800&v=beta&t=ZY2ZqmM9T2AFo3fYvIpfqgHjd4X2ngsHko6KS19bu-w"
+                        alt="Profile Image">
                 </div>
 
-                <input type="file" id="profile-pic-input" accept="image/*" style="display:none;" onchange="changeProfilePic(event)">
-                
+                <input type="file" id="profile-pic-input" accept="image/*" style="display:none;"
+                    onchange="changeProfilePic(event)">
+
                 <div class="profile-user-settings">
                     <h1 class="profile-user-name">Md. Mehedi Hasan Naim</h1>
 
@@ -179,49 +191,49 @@
 
     <main>
         <div class="container">
-            <div  class="container mx-auto my-[50px]">
+            <div class="container mx-auto my-[50px]">
                 <!-- Header Section -->
                 <section id="header">
-                
-                
+
+
                     <!-- Divider -->
                     <div class="divider"></div>
-            
-                
+
+
                     <!-- Divider -->
                     <div class="divider"></div>
-                
+
                 </section>
-                
-                
+
+
                 <!-- Content Section -->
                 <section id="content" class=" lg:max-w-[1100px] w-full mx-auto">
-                
+
                     <!-- Card - 01 -->
                     <a href="/cardDetails.html">
                         <div id="postsContainer"></div>
                     </a>
-                
+
                 </section>
-        
+
             </div>
-        
-             <!-- Footer Section -->
-    
-        
-        
-        
-            
-        
-        
-        
-        
-        <!-- --------------------------------------------------------------- -->
-        
-        
-        
-        
-        
+
+            <!-- Footer Section -->
+
+
+
+
+
+
+
+
+
+            <!-- --------------------------------------------------------------- -->
+
+
+
+
+
 
         </div>
     </main>
@@ -247,71 +259,33 @@
             console.log(file)
             if (file) {
                 const reader = new FileReader();
-                reader.onload = function(e) {
+                reader.onload = function (e) {
                     document.querySelector('.profile-img').src = e.target.result;
                 };
                 reader.readAsDataURL(file);
             }
         }
 
-        function showModal(type) {
-            const modal = document.getElementById('modal');
-            const modalTitle = document.getElementById('modal-title');
-            const modalList = document.getElementById('modal-list');
-            
-            modal.style.display = 'flex';
+       function showModal(type) {
+    const modal = document.getElementById('modal');
+    const modalTitle = document.getElementById('modal-title');
+    const modalList = document.getElementById('modal-list');
 
-            // Clear the previous list
-            modalList.innerHTML = '';
+    modal.style.display = 'flex';
 
-            // Set the title and list depending on the type
-            if (type === 'posts') {
-                modalTitle.textContent = 'Posts';
-                const posts = [
-                    {
-                        author: 'John Doe',
-                        authorImage: 'https://via.placeholder.com/40',
-                        content: 'This is a sample post about programming.'
-                    },
-                    {
-                        author: 'Jane Smith',
-                        authorImage: 'https://via.placeholder.com/40',
-                        content: 'Another post about software development.'
-                    },
-                    {
-                        author: 'Alice Brown',
-                        authorImage: 'https://via.placeholder.com/40',
-                        content: 'A post about my latest project in machine learning.'
-                    }
-                ];
-                
-                posts.forEach(post => {
-                    const li = document.createElement('li');
-                    li.innerHTML = `
-                        <img src="${post.authorImage}" alt="${post.author}" style="border-radius: 50%; width: 40px; height: 40px; margin-right: 15px;">
-                        <div class="post-content">
-                            <h3>${post.author}</h3>
-                            <p>${post.content}</p>
-                        </div>
-                    `;
-                    modalList.appendChild(li);
-                });
-            } else if (type === 'followers') {
-                modalTitle.textContent = 'Followers';
-                for (let i = 1; i <= 10; i++) {
-                    const li = document.createElement('li');
-                    li.innerHTML = `<img src="https://media.licdn.com/dms/image/v2/D5603AQGSAKbb-Qd7JQ/profile-displayphoto-shrink_400_400/profile-displayphoto-shrink_400_400/0/1718564057747?e=1739404800&v=beta&t=ZY2ZqmM9T2AFo3fYvIpfqgHjd4X2ngsHko6KS19bu-w" alt="Follower ${i}" style="border-radius: 50%; width: 30px; height: 30px; margin-right: 10px;"> Follower ${i}`;
-                    modalList.appendChild(li);
-                }
-            } else if (type === 'following') {
-                modalTitle.textContent = 'Following';
-                for (let i = 1; i <= 10; i++) {
-                    const li = document.createElement('li');
-                    li.innerHTML = `<img src="https://media.licdn.com/dms/image/v2/D5603AQGSAKbb-Qd7JQ/profile-displayphoto-shrink_400_400/profile-displayphoto-shrink_400_400/0/1718564057747?e=1739404800&v=beta&t=ZY2ZqmM9T2AFo3fYvIpfqgHjd4X2ngsHko6KS19bu-w" alt="Following ${i}" style="border-radius: 50%; width: 30px; height: 30px; margin-right: 10px;"> Following ${i}`;
-                    modalList.appendChild(li);
-                }
-            }
-        }
+    // Clear the previous list
+    modalList.innerHTML = '';
+
+    // Set the title and list depending on the type
+    if (type === 'followers') {
+        modalTitle.textContent = 'Followers';
+
+    } else if (type === 'following') {
+        modalTitle.textContent = 'Following';
+
+    }
+}
+
 
         function closeModal() {
             document.getElementById('modal').style.display = 'none';
@@ -326,11 +300,11 @@
                         'Authorization': `Bearer ${accessToken}`
                     }
                 });
-        
+
                 if (!res.ok) {
                     throw new Error(`HTTP error! status: ${res.status}`);
                 }
-        
+
                 const data = await res.json();
                 return data;
             } catch (error) {
@@ -347,12 +321,12 @@
                         'Authorization': `Bearer ${accessToken}`
                     }
                 });
-                
-        
+
+
                 if (!res.ok) {
                     throw new Error(`HTTP error! status: ${res.status}`);
                 }
-        
+
                 const data = await res.json();
                 const userPic = document.querySelector(".profile-img");
                 if (userPic) {
@@ -366,46 +340,21 @@
             }
         };
         
-        const getUserDataById = async (userId) => {
-            try {
-                const accessToken = localStorage.getItem("accessToken");
-                const res = await fetch(`http://localhost/devspare/backend/api/v1/users/get-user.php?userId=${userId}`, {
-                    method: 'GET',
-                    headers: {
-                        'Authorization': `Bearer ${accessToken}`,
-                        'Content-Type': 'application/json'
-                    }
-                });
-        
-                if (!res.ok) {
-                    throw new Error(`HTTP error! status: ${res.status}`);
-                }
-        
-                const data = await res.json();
-                return data;
-            } catch (error) {
-                console.error("Error fetching user data:", error.message);
-                return null;
-            }
-        };
-        
         // Function to render articles in the DOM
         const renderPosts = async () => {
             const data = await getPostsData(); // Fetch posts data
             const postsContainer = document.getElementById("postsContainer");
-        
+
             if (data.length === 0) {
                 postsContainer.innerHTML = "<p>No posts available.</p>";
                 return;
             }
-        
+
             postsContainer.innerHTML = ""; // Clear previous content
-        
+
             for (const post of data) {
-                console.log(post)
-                const user = await getUserDataById(post.user_id); // Fetch user data for each post
-                console.log(user)
-        
+
+
                 const postHTML = `
                     <a href="/cardDetails.html?id=${post.article_id}" class="block">
                         <div class="border-2 lg:p-[40px] p-[28px] border-solid rounded-lg mb-[30px]">
@@ -434,7 +383,7 @@
                         </div>
                     </a>
                 `;
-        
+
                 postsContainer.innerHTML += postHTML;
             }
         };
@@ -442,52 +391,64 @@
         renderPosts();
         const user = getUserData()
         user.then((data) =>
-        document.getElementById("profile-avatar").querySelector("img").src =
-        data.profile_pic || "https://via.placeholder.com/150"
+            document.getElementById("profile-avatar").querySelector("img").src =
+            data.profile_pic || "https://via.placeholder.com/150"
         )
-        
-        
-        const renderNotification = async () => {
-              const notification = await getAllNotification();
-              console.log("notification.length", notification.length);
-        
-              // Select the container by ID
-              const notificationContainer = document.getElementById("notificationCon");
-        
-              document.getElementById("tNotification").innerHTML = `
-                    <p>${notification.length}</p>
-                `;
-        
-              // Loop through each notification and render dynamically
-              notification.forEach((el) => {
-                const notificationDiv = document.createElement("div");
-                notificationDiv.classList.add("mt-[70px]");
-                notificationDiv.innerHTML = `
-                  <div class="divider"></div>
-                  <div>
-                    <div class="my-[15px] flex items-center gap-[10px]">
-                      <!-- Image -->
-                      <img class="rounded-[300px] w-[50px] h-[50px]"
-                          src="https://static.vecteezy.com/system/resources/thumbnails/005/346/410/small_2x/close-up-portrait-of-smiling-handsome-young-caucasian-man-face-looking-at-camera-on-isolated-light-gray-studio-background-photo.jpg"
-                          alt="">
-                      <!-- Name part -->
-                      <div>
-                        <p class="text-[18px] text-gray-700">${el.title || "title"}</p>
-                        <p class="text-gray-400 text-[17px]">${el.created_at.toString() || "about 1 year ago"}</p>
-                      </div>
-                    </div>
-                    <!-- Comment -->
-                    <p class="text-[16px] text-gray-600">${el.message || "Lorem ipsum dolor sit amet consectetur adipisicing elit. Quam, nisi nesciunt beatae quasi sit repudiandae dolorem iste ut consequuntur atque iusto, id odio aliquid eaque, eum est. Odit, dolores earum iure id placeat ratione dignissimos in suscipit laboriosam accusantium eaque?"}</p>
-                    <div class="divider"></div>
-                  </div>
-                `;
-                // Append the rendered notification to the container
-                notificationContainer.appendChild(notificationDiv);
-              });
-            };
-            renderNotification()
-        
-            
+
+
+        const getFollowing = async () => {
+            try {
+                const accessToken = localStorage.getItem("accessToken");
+                const res = await fetch("http://localhost/devspare/backend/api/v1/follows/follow.php?type=following", {
+                    method: 'GET',
+                    headers: {
+                        'Authorization': `Bearer ${accessToken}`
+                    }
+                });
+
+
+                if (!res.ok) {
+                    throw new Error(`HTTP error! status: ${res.status}`);
+                }
+
+                const data = await res.json();
+                
+                return data;
+            } catch (error) {
+                console.error("Error fetching data (Fetch):", error.message);
+                return [];
+            }
+        };
+
+        getFollowing().then((d) => (d.map((e) => getUserDataByFollowing(e.followed_id)[0])))
+
+        const getFollower = async () => {
+            try {
+                const accessToken = localStorage.getItem("accessToken");
+                const res = await fetch("http://localhost/devspare/backend/api/v1/follows/follow.php?type=followers", {
+                    method: 'GET',
+                    headers: {
+                        'Authorization': `Bearer ${accessToken}`
+                    }
+                });
+
+
+                if (!res.ok) {
+                    throw new Error(`HTTP error! status: ${res.status}`);
+                }
+
+                const data = await res.json();
+                console.log(data)
+                return data;
+            } catch (error) {
+                console.error("Error fetching data (Fetch):", error.message);
+                return [];
+            }
+        };
+
+        getFollower().then((d) => console.log(d.map((e) => getUserDataByFollower(e.follower_id)[0])))
+
     </script>
 </body>
+
 </html>

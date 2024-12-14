@@ -51,7 +51,7 @@
                                 <li><a href="#"><i class="fa-regular fa-bell lg:text-[25px] text-[18px] "></i></a></li>
                             </ul>
                         </div>
-                        <button class=" hover:bg-gray-200 border px-[20px] rounded-2xl  text-[55px] font-bold"><a
+                        <button class=" hover:bg-gray-200 border px-[20px] rounded-2xl  text-[55px] font-bold text-blue-600"><a
                                 href="/index.html">Devspare!</a></button>
                     </div>
                     <!-- <div class="navbar-center hidden lg:flex">
@@ -141,7 +141,7 @@
 
                                     
                                     <li><a>Dashboard</a></li>
-                                    <li><a href="/logout.html">Logout</a></li>
+                                    <li><a href="/logout.html" onclick="removeToken()">Logout</a></li>
                                     
                                     
                                 </ul>
@@ -154,21 +154,21 @@
             </nav>
         
     
-            <div class="divider"></div>
+            <!-- <div class="divider"></div> -->
         
             <!-- Header Section -->
-            <div class="subHeader lg:max-w-[1100px] max-w-[300px] mx-auto">
+            <!-- <div class="subHeader lg:max-w-[1100px] max-w-[300px] mx-auto">
                 <h1 class="lg:text-[27px] text-[20px]">Following</h1>
-            </div>
+            </div> -->
         
-            <!-- Divider -->
+            
             <div class="divider"></div>
         
         </section>
         
         
         <!-- Content Section -->
-        <section id="content" class=" lg:max-w-[1100px] w-full mx-auto">
+        <section id="content" class=" lg:max-w-[1100px] w-full mx-auto mt-[20px]" >
         
             <!-- Card - 01 -->
             <a href="/cardDetails.html">
@@ -368,7 +368,7 @@ const renderPosts = async () => {
                                 </div>
                             </div>
                             <h1 class="lg:text-[33px] text-[20px] font-bold">${post.title}</h1>
-                            <p class="lg:text-[24px] text-[16px] lg:pb-2 pb-1">${post.content}</p>
+                            <p class="lg:text-[24px] text-[16px] lg:pb-2 pb-1">${post.content}.slice(0,50)</p>
                             <div class="flex gap-[50px] items-center">
                                 <div class="flex gap-1 lg:text-[20px] text-[15px] items-center">
                                     <i class="fa-regular fa-thumbs-up"></i>
@@ -441,7 +441,9 @@ const renderNotification = async () => {
       });
     };
     renderNotification()
-
+function removeToken(){
+    localStorage.removeItem('accessToken')
+}
      
 </script>
 </body>
